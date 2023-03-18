@@ -40,7 +40,7 @@ def handle_message(event):
     
     if event.message.type != "text":
         return
-     if (event.message.type == "image") and  getface_status :
+    if (event.message.type == "image") and  getface_status :
             
         SendImage = line_bot_api.get_message_content(event.message.id)
         getface_status = False
