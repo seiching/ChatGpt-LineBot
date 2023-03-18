@@ -38,12 +38,12 @@ def callback():
 def handle_message(event):
     global working_status
     
-    if event.message.type != "text":
-        return
+   
     if (event.message.type == "image") and  getface_status :
             
         SendImage = line_bot_api.get_message_content(event.message.id)
         getface_status = False
+        
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="收到您的照片,驗證照片中請稍等"))
@@ -52,7 +52,8 @@ def handle_message(event):
         #with open(path, 'wb') as fd:
          #   for chenk in SendImage.iter_content():
           #      fd.write(chenk)
-        
+    if event.message.type != "text":
+        return
     if event.message.text == "reg" or event.message.text == "Reg" or event.message.text == "報到"  :
         getface_status = True
         line_bot_api.reply_message(
