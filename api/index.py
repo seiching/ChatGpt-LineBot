@@ -9,8 +9,7 @@ import os
 line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
 line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
 working_status = os.getenv("DEFALUT_TALKING", default = "true").lower() == "true"
-# 表示可以輸入臉照片
-# getface_status = False
+
 app = Flask(__name__)
 chatgpt = ChatGPT()
 
@@ -37,14 +36,10 @@ def callback():
 @line_handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global working_status
+    
     if event.message.type != "text":
         return
-    if event.message.text == "reg" or event.message.text == "Reg" or event.message.text == "報到"  :
-        # getface_status = True
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="歡迎到人訓所報到,請開啟相機傳入您的照片,驗證您的身份"))
-        return
+    
     if event.message.text == "啟動":
         working_status = True
         line_bot_api.reply_message(
