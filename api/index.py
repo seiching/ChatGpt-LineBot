@@ -33,25 +33,24 @@ def callback():
         abort(400)
     return 'OK'
 
-
+@line_handler.add(MessageEvent, message=ImageMessage)
+def handle_image(event):
+    
+    if (event.message.type == "image") and  getface_status :            
+        SendImage = line_bot_api.get_message_content(event.message.id)
+        getface_status = False        
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="收到您的照片,驗證照片中請稍等"))
+    return 
+        #path = event.message.id + '.png'
+        #with open(path, 'wb') as fd:
+         #   for chenk in SendImage.iter_content():
+          #      fd.write(chenk)
 @line_handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global working_status
     
    
-    if (event.message.type == "image") and  getface_status :
-            
-        SendImage = line_bot_api.get_message_content(event.message.id)
-        getface_status = False
-        
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="收到您的照片,驗證照片中請稍等"))
-        return 
-        #path = event.message.id + '.png'
-        #with open(path, 'wb') as fd:
-         #   for chenk in SendImage.iter_content():
-          #      fd.write(chenk)
+
     if event.message.type != "text":
         return
     if event.message.text == "reg" or event.message.text == "Reg" or event.message.text == "報到"  :
