@@ -40,7 +40,7 @@ def handle_image(event):
         SendImage = line_bot_api.get_message_content(event.message.id)
         getface_status = False        
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="收到您的照片,驗證照片中請稍等"))
-    return 
+        return 
         #path = event.message.id + '.png'
         #with open(path, 'wb') as fd:
          #   for chenk in SendImage.iter_content():
