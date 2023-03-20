@@ -1,8 +1,7 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-#from linebot.models import MessageEvent, TextMessage, TextSendMessage
-from linebot.models import MessageEvent, TextMessage, ImageMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from api.chatgpt import ChatGPT
 
 import os
@@ -38,9 +37,6 @@ def callback():
 @line_handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global working_status
-    
-   
-
     if event.message.type != "text":
         return
     if event.message.text == "reg" or event.message.text == "Reg" or event.message.text == "報到"  :
