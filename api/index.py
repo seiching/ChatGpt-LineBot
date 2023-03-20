@@ -37,7 +37,7 @@ def callback():
 def handle_image(event):
     
     if (event.message.type == "image")  :            
-        SendImage = line_bot_api.get_message_content(event.message.id)
+       # SendImage = line_bot_api.get_message_content(event.message.id)
        # getface_status = False        
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="收到您的照片,驗證照片中請稍等"))
         return 
