@@ -38,6 +38,11 @@ def handle_message(event):
     global working_status
     if event.message.type != "text":
         return
+    if event.message.text == "reg" or event.message.text == "Reg" :
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="歡迎到人訓所報到,請開啟相機傳入您的照片 "))
+        return
 
     if event.message.text == "說話":
         working_status = True
